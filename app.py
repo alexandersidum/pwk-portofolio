@@ -1,4 +1,4 @@
-from flask import render_template, Flask, request, flash, url_for, redirect, send_from_directory
+from flask import render_template, Flask, request, flash, url_for, redirect, send_from_directory, after_this_request
 from generate_table import *
 import os
 
@@ -44,6 +44,12 @@ def index():
 def download():
     #belum tahu gimana cara manage upload download
     uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
+
+    @after_this_request
+    def delete_output():
+        os.remove(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'output.docx'))
+        return redirect(url_for('index', isReady=isOutputExist()))
+
     return send_from_directory(directory=uploads, filename='output.docx')
 
 def generate_output_table(doc_input, xml_input):
