@@ -45,10 +45,10 @@ def download():
     #belum tahu gimana cara manage upload download
     uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
 
-    @after_this_request
-    def delete_output():
-        os.remove(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'output.docx'))
-        return redirect(url_for('index', isReady=isOutputExist()))
+    # @after_this_request
+    # def delete_output():
+    #     os.remove(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'output.docx'))
+    #     return redirect(url_for('index', isReady=isOutputExist()))
 
     return send_from_directory(directory=uploads, filename='output.docx')
 
