@@ -32,6 +32,8 @@
             {% else %}
             <p>Masukkan file docx dan xml</a>
             {% endif %}
+
+            <a href="{{url_for('delete_file')}}">Clear File</a>
             
         </form>
         {% for msg in get_flashed_messages() %}

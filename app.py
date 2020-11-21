@@ -52,6 +52,12 @@ def download():
 
     return send_from_directory(directory=uploads, filename='output.docx')
 
+@app.route('/clear_files')
+def clear_files():
+    os.remove(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'output.docx'))
+    return redirect(url_for('index', isReady=isOutputExist()))
+
+
 def generate_output_table(doc_input, xml_input):
     try:
         doc = Document(doc_input)
