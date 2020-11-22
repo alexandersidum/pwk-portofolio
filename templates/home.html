@@ -26,19 +26,25 @@
             <div class="form-group">
                 <button type="submit" >Submit</button>
             </div>
-
             {% if  isReady%}
             <a href="{{url_for('download')}}">Download</a>
             {% else %}
             <p>Masukkan file docx dan xml</a>
             {% endif %}
-
+            <hr>
             <a href="{{url_for('clear_files')}}">Clear File</a>
             
         </form>
-        {% for msg in get_flashed_messages() %}
-      <h1>{{ msg }}</h1>
-    {% endfor %}
+        {% with message = get_flashed_messages() %}
+        {% if message %}
+            {% for msg in message %}
+            <h1>{{ msg }}</h1>
+            {% endfor %}
+        {% else %}
+            <h1>Default Flash Msg</h1>
+        {% endif %}
+        {% endwith %}
+        
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,5 +1,6 @@
-from flask import render_template, Flask, request, flash, url_for, redirect, send_from_directory, after_this_request
+from flask import render_template, Flask, Response, request, flash, url_for, redirect, send_from_directory, after_this_request,send_file
 from generate_table import *
+import tempfile
 import os
 
 #Pakai quart?
@@ -15,7 +16,7 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 app.config['UPLOAD_FOLDER']    =   'output_files'
 ALLOWED_EXTENSIONS = {'xml', 'docx'}
-
+fd, fname= tempfile.mkstemp(suffix='.docx')
 
 def is_file_allowed(filename):
     return '.' in filename and filename.rsplit('.',1)[1] in ALLOWED_EXTENSIONS
@@ -42,19 +43,19 @@ def index():
 
 @app.route('/download',methods = ['GET', 'POST'] )
 def download():
-    #belum tahu gimana cara manage upload download
-    uploads = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
-
-    # @after_this_request
-    # def delete_output():
-    #     os.remove(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'output.docx'))
-    #     return redirect(url_for('index', isReady=isOutputExist()))
-
-    return send_from_directory(directory=uploads, filename='output.docx')
+    with open (fname, 'rb') as f:
+        data = f.readlines()
+    os.close(fd)
+    os.unlink(fname)
+    return Response(data, headers={
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'Content-Disposition': 'attachment; filename=response_output.docx'
+    })
 
 @app.route('/clear_files')
 def clear_files():
-    os.remove(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'output.docx'))
+    os.close(fd)
+    os.unlink(fname)
     return redirect(url_for('index', isReady=isOutputExist()))
 
 
@@ -78,7 +79,6 @@ def generate_output_table(doc_input, xml_input):
 
         for x in xml_data:
             data_nilai = deepcopy(x[1:])
-
             template_doc = Document('template_tbl.docx')
             template_section = template_doc.sections[0]
             left, right, top, bottom, gutt = template_section.left_margin, template_section.right_margin, template_section.top_margin, template_section.bottom_margin, template_section.gutter
@@ -112,13 +112,17 @@ def generate_output_table(doc_input, xml_input):
                 writeKetercapaianCpl(cell[7],cell[1],cell[6],bobot_cpl)
                 writeDesc(cell[-1],data_nilai[i+1],cpmk[i],fail_desc[i])
 
-        doc.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'output.docx'))
+        global fd,fname
+        os.close(fd)
+        os.unlink(fname)
+        fd, fname= tempfile.mkstemp(suffix='.docx')
+        doc.save(fname)
 
     except IndexError:
         print(f'Usage : python [doc file] [xml file] [saved file]')
 
 def isOutputExist():
-    return os.path.isfile(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], 'output.docx'))
+    return os.path.getsize(fname) > 0 and os.path.isfile(fname)
 
 
 if(__name__)=='__main__':
