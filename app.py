@@ -1,22 +1,25 @@
-from flask import render_template, Flask, Response, request, flash, url_for, redirect, send_from_directory, after_this_request,send_file
-from generate_table import *
+from flask import render_template, session, Flask, Response, request, flash, url_for, redirect, send_from_directory, after_this_request,send_file
+from flask_session import Session
+from file_handler import FileHandler
 import tempfile
 import os
 
-#Pakai quart?
-#Relative path
-#Apa bisa dilakukan didalam client
-#Supaya nggak bentrok gimana
-#Coba deploy ke free hosting
-#request file perlu disave?
-#Perbagus UI
 
+# Session variable harus serializable session buat fname aja?
+# backup di app5
+# Exception handling belum
+# Temp file masih belum terdelete jika tidak didownload !!
+# menggunakan home test
+# Named temp file?
 
 app = Flask(__name__)
-app.secret_key = "super secret key"
-app.config['UPLOAD_FOLDER']    =   'output_files'
+app.secret_key = '11d06ffa54be4e60b5f51dd1434296b0'
+app.config['UPLOAD_FOLDER'] = 'output_files'
+app.config['SESSION_TYPE'] = 'filesystem'
+output_dir = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
+Session(app)
 ALLOWED_EXTENSIONS = {'xml', 'docx'}
-fd, fname= tempfile.mkstemp(suffix='.docx')
+
 
 def is_file_allowed(filename):
     return '.' in filename and filename.rsplit('.',1)[1] in ALLOWED_EXTENSIONS
@@ -26,103 +29,46 @@ def is_file_allowed(filename):
 def index():
     if request.method=='POST':
         if 'xml_file' not in request.files or 'docx_file' not in request.files:
+            # File tidak diinput
             flash('File not found')
             return redirect(request.url)
         else:
             xml = request.files['xml_file']
             docx = request.files['docx_file']
-            if(is_file_allowed(xml.filename) and is_file_allowed(docx.filename)):
-                flash('File is good')
-                generate_output_table(docx, xml)
-
+            if(is_file_allowed(xml.filename) and is_file_allowed(docx.filename)):                
+                # Kalau file valid?
+                session['fd'], session['fname'] = tempfile.mkstemp(suffix='.docx' , dir=output_dir)
+                session['is_file_ready'] = FileHandler(docx_file=docx, xml_file=xml).generate_output_table(session.get('fname'))
+                session['is_file_error'] = False
             else :
-                flash('File is not good')
-            return redirect(url_for('index', isReady=isOutputExist()))
+                # Kalau file tidak valid
+                session['is_file_error'] = True
+                session['is_file_ready'] = False
+            return redirect(url_for('index', is_ready=session.get('is_file_ready'), is_file_error=session.get('is_file_error')))
     else:
-        return render_template('home.html', isReady=isOutputExist())
+        return render_template('home.html', is_ready=session.get('is_file_ready'), is_file_error=session.get('is_file_error'))
 
 @app.route('/download',methods = ['GET', 'POST'] )
 def download():
-    with open (fname, 'rb') as f:
-        data = f.readlines()
-    os.close(fd)
-    os.unlink(fname)
-    return Response(data, headers={
-        'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        'Content-Disposition': 'attachment; filename=response_output.docx'
-    })
+    if is_file_ready():
+        with open (session.get('fname'), 'rb') as f:
+            data = f.readlines()
+        os.close(session.get('fd'))
+        os.remove(session.get('fname'))
+        return Response(data, headers={
+            'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'Content-Disposition': 'attachment; filename=response_output.docx'
+        })
+    else :
+        session['is_file_ready'] = False
+        return redirect(url_for('index', is_ready=session.get('is_file_ready'), is_file_error=session.get('is_file_error')))
 
-@app.route('/clear_files')
-def clear_files():
-    os.close(fd)
-    os.unlink(fname)
-    return redirect(url_for('index', isReady=isOutputExist()))
+def is_file_ready():
+    return session.get('fname') is not None and os.path.isfile(session.get('fname'))
 
-
-def generate_output_table(doc_input, xml_input):
-    try:
-        doc = Document(doc_input)
-        xml_data = XMLReader(xml_input).getData()
-
-
-        table_cpl = tableNilaiCPL(doc)
-        bobot_cpl = ambilBobotCPl(table_cpl)
-        cpmk_cpl = CpmkCpl(table_cpl)
-
-        rae_table = doc.tables[-2]
-        cpmk = ambilCpmk(rae_table)
-        mg_ke = ambilMinggu(rae_table)
-        bentuk_penilaian = ambilBentukPenilaian(rae_table)
-        bobot_cpmk = ambilBobotCpmk(rae_table)
-        fail_desc = ambilFailDesc(rae_table)
-
-
-        for x in xml_data:
-            data_nilai = deepcopy(x[1:])
-            template_doc = Document('template_tbl.docx')
-            template_section = template_doc.sections[0]
-            left, right, top, bottom, gutt = template_section.left_margin, template_section.right_margin, template_section.top_margin, template_section.bottom_margin, template_section.gutter
-            new_width, new_height = template_section.page_width, template_section.page_height
-            section = doc.add_section()
-            section.left_margin, section.right_margin, section.top_margin, section.bottom_margin, section.gutter = left, right, top, bottom, gutt
-            section.page_width , section.page_height = new_width, new_height
-            keterangan = doc.add_paragraph().add_run('Portofolio penilaian & evaluasi proses dan hasil belajar {}'.format(data_nilai[0]))
-            font = keterangan.font
-            font.name = 'Britannic Bold'
-            font.size = Pt(12)
-            table = template_doc.tables[-1]
-            new_tbl = deepcopy(table._tbl)
-            paragraph =  doc.add_paragraph()
-            paragraph._p.addnext(new_tbl)
-
-
-            tbl = doc.tables[-1]
-            tbl.alignment = WD_TABLE_ALIGNMENT.CENTER # pylint: disable=no-member
-            tbl.style = 'Table Grid'
-
-            for i in range(len(mg_ke)):
-                cell = tbl.add_row().cells
-                writeBoldStyle(cell[0],mg_ke[i])
-                writeCpl(cell[1],cpmk_cpl,cpmk[i])
-                writeCpmk(cell[2],cpmk[i])
-                writeNormalStyle(cell[3],bentuk_penilaian[i])
-                writeNormalStyle(cell[4],bobot_cpmk[i])
-                writeNormalStyle(cell[5],data_nilai[i+1])
-                writeNiliaXBobot(cell[6],data_nilai[i+1],bobot_cpmk[i])
-                writeKetercapaianCpl(cell[7],cell[1],cell[6],bobot_cpl)
-                writeDesc(cell[-1],data_nilai[i+1],cpmk[i],fail_desc[i])
-
-        global fd,fname
-        os.close(fd)
-        os.unlink(fname)
-        fd, fname= tempfile.mkstemp(suffix='.docx')
-        doc.save(fname)
-
-    except IndexError:
-        print(f'Usage : python [doc file] [xml file] [saved file]')
-
-def isOutputExist():
-    return os.path.getsize(fname) > 0 and os.path.isfile(fname)
+def clean_up():
+    for f in os.scandir(output_dir):
+        os.remove(f.path)
 
 
 if(__name__)=='__main__':

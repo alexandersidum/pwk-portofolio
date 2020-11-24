@@ -6,44 +6,61 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/style.css">
     <title>SIM Portofolio</title>
 </head>
 <body>
-    <nav class="nav navbar-expand-lg navbar-light bg-light">
+    <!-- <nav class="nav navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand">SIM Portofolio</a>
-    </nav>
+    </nav> -->
     
-    <div class="jumbotron">
-        <form method="POST" enctype=multipart/form-data>
-            <div class="form-group-">
-                <label for="docx_file">File Docx</label>
-                <input class="form-control-file" type="file" name="docx_file" >
+    <div class="container min-vw-100">
+        <div class="row justify-content-center">
+            <div class="col-7 card mr-2 pl-4">
+                <div class="pr-5">
+                    <form method="POST" enctype=multipart/form-data>
+                        <label class="w-100" for="docxFile">Upload file Docx </label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id='docxFile' name="docx_file">
+                            <label class="custom-file-label" for="docxFile">Pilih file</label>
+                        </div>
+                        <hr>
+                        <label class="w-100" for="docxFile">Upload file XML </label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input " id='xmlFile' name="xml_file">
+                            <label class="custom-file-label" for="xmlFile">Pilih file</label>
+                            </div>
+                        <hr>
+                        <div class="form-group mt-4">
+                            <button class="btn btn-primary btn-md w-25" type="submit" >Submit</button>
+                        </div>
+                    </form>
+                </div>
+                
+                {% if  is_ready%}
+                <div class="alert alert-success mt-2 mb-1" role="alert">
+                    File portofolio selesai diproses , <a class='alert-link' href="{{url_for('download')}}">DOWNLOAD DISINI</a>
+                </div>
+                <div class="alert alert-warning mt-2 mb-5" role="alert">
+                    File akan otomatis hilang setelah download selesai, ulangi upload file jika ingin memproses ulang
+                </div>
+                {% else %}
+                <div class="alert alert-info mt-2 mb-5" role="alert">
+                    Masukkan file xml nilai dan docx Portofolio SIP
+                </div>
+                {% endif %}
+                
+                
             </div>
-            <div class="form-group">
-                <label for="xml_file">File XML</label>
-                <input class="form-control-file" type="file" name="xml_file" >
+            <!-- end col -->
+            <div class="col-4 card pt-2 pl-4">
+                <p class="text-uppercase font-weight-bolder text-dark ">Petunjuk</p>
+
             </div>
-            <div class="form-group">
-                <button type="submit" >Submit</button>
-            </div>
-            {% if  isReady%}
-            <a href="{{url_for('download')}}">Download</a>
-            {% else %}
-            <p>Masukkan file docx dan xml</a>
-            {% endif %}
-            <hr>
-            <a href="{{url_for('clear_files')}}">Clear File</a>
-            
-        </form>
-        {% with message = get_flashed_messages() %}
-        {% if message %}
-            {% for msg in message %}
-            <h1>{{ msg }}</h1>
-            {% endfor %}
-        {% else %}
-            <h1>Default Flash Msg</h1>
-        {% endif %}
-        {% endwith %}
+            <!-- end col -->
+
+        </div>
+        <!-- end row -->
         
     </div>
     <!-- Optional JavaScript -->
@@ -51,5 +68,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+ 
 </body>
 </html>
