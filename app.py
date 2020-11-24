@@ -5,7 +5,7 @@ import tempfile
 import os
 
 
-# Session variable harus serializable session buat fname aja?
+# BUGG
 # backup di app5
 # Exception handling belum
 # Temp file masih belum terdelete jika tidak didownload !!
@@ -48,7 +48,7 @@ def index():
     else:
         return render_template('home.html', is_ready=session.get('is_file_ready'), is_file_error=session.get('is_file_error'))
 
-@app.route('/download',methods = ['GET', 'POST'] )
+@app.route('/download')
 def download():
     if is_file_ready():
         with open (session.get('fname'), 'rb') as f:
@@ -66,10 +66,10 @@ def download():
 def is_file_ready():
     return session.get('fname') is not None and os.path.isfile(session.get('fname'))
 
-def clean_up():
-    for f in os.scandir(output_dir):
-        os.remove(f.path)
+# def clean_up():
+#     for f in os.scandir(output_dir):
+#         os.remove(f.path)
 
 
 if(__name__)=='__main__':
-    app.run(debug=True)
+    app.run()
