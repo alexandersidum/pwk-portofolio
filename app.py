@@ -43,6 +43,8 @@ def index():
             docx = request.files['docx_file']
             if(is_file_allowed(xml.filename) and is_file_allowed(docx.filename)):                
                 # Kalau file valid?
+                if not os.path.exists(output_dir):
+                    os.makedirs(output_dir)
                 session['fd'], session['fname'] = tempfile.mkstemp(suffix='.docx' , dir=output_dir)
                 session['is_file_ready'] = FileHandler(docx_file=docx, xml_file=xml).generate_output_table(session.get('fname'))
                 session['is_file_error'] = False
