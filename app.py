@@ -4,10 +4,10 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from file_handler import FileHandler
 import tempfile
 import os
+import atexit
 
-# Temp file masih belum kedelete kalau user cuma submit dan tidak download
-# Apa perlu fungsi untuk mendelete file dalam output_file manual?
-# Exception handling untuk gagal convert file belum
+# Exception handling belum
+# Alert untuk error saat convert dan submitan kosong belum
 
 app = Flask(__name__)
 app.secret_key = '11d06ffa54be4e60b5f51dd1434296b0'
@@ -15,38 +15,30 @@ app.config['UPLOAD_FOLDER'] = 'output_files'
 app.config['SESSION_TYPE'] = 'filesystem'
 output_dir = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
 Session(app)
-ALLOWED_EXTENSIONS = {'xml', 'docx'}
-
 
 def clean_up():
     for f in os.scandir(output_dir):
-        os.remove(f.path)
+        os.unlink(f.path)
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=clean_up, trigger="interval", minutes=5)
+scheduler.add_job(func=clean_up, trigger="interval", minutes=2)
 scheduler.start()
-
-
-def is_file_allowed(filename):
-    return '.' in filename and filename.rsplit('.',1)[1] in ALLOWED_EXTENSIONS
 
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
+    fh = FileHandler()
     if request.method=='POST':
         if 'xml_file' not in request.files or 'docx_file' not in request.files:
             # File tidak diinput
-            flash('File not found')
             return redirect(request.url)
         else:
             xml = request.files['xml_file']
             docx = request.files['docx_file']
-            if(is_file_allowed(xml.filename) and is_file_allowed(docx.filename)):                
+            if(fh.is_xml_file_allowed(xml.filename) and fh.is_docx_file_allowed(docx.filename)):                
                 # Kalau file valid?
-                if not os.path.exists(output_dir):
-                    os.makedirs(output_dir)
                 session['fd'], session['fname'] = tempfile.mkstemp(suffix='.docx' , dir=output_dir)
-                session['is_file_ready'] = FileHandler(docx_file=docx, xml_file=xml).generate_output_table(session.get('fname'))
+                session['is_file_ready'] = fh.generate_output_table(docx_file=docx, xml_file=xml, t_fd=session.get('fd') ,t_fname=session.get('fname'))
                 session['is_file_error'] = False
             else :
                 # Kalau file tidak valid
@@ -59,14 +51,17 @@ def index():
 @app.route('/download')
 def download():
     if is_file_ready():
-        with open (session.get('fname'), 'rb') as f:
-            data = f.readlines()
-        os.close(session.get('fd'))
-        os.remove(session.get('fname'))
-        return Response(data, headers={
-            'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'Content-Disposition': 'attachment; filename=response_output.docx'
-        })
+        try :
+            with open (session.get('fname'), 'rb') as f:
+                data = f.readlines()
+            os.remove(session.get('fname'))
+            return Response(data, headers={
+                'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'Content-Disposition': 'attachment; filename=response_output.docx'
+            })
+        except:
+            session['is_file_ready'] = False,
+            return redirect(url_for('index', is_ready=session.get('is_file_ready'), is_file_error=session.get('is_file_error')))
     else :
         session['is_file_ready'] = False
         return redirect(url_for('index', is_ready=session.get('is_file_ready'), is_file_error=session.get('is_file_error')))
@@ -81,6 +76,9 @@ def download_cth_nilai():
 
 def is_file_ready():
     return session.get('fname') is not None and os.path.isfile(session.get('fname'))
+
+
+atexit.register(lambda : scheduler.shutdown(wait=False))
 
 if(__name__)=='__main__':
     app.run()

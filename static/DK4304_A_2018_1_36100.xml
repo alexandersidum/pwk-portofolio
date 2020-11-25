@@ -1,0 +1,348 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>ITS</Author>
+  <LastAuthor>Cahyono Susetyo</LastAuthor>
+  <Created>2020-09-23T06:43:36Z</Created>
+  <LastSaved>2020-09-23T08:07:58Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>9108</WindowHeight>
+  <WindowWidth>23040</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#BEE3D7" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#BEE3D7" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <NumberFormat ss:Format="Fixed"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Interior/>
+   <NumberFormat ss:Format="Fixed"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Nilai NINA">
+  <Table ss:ExpandedColumnCount="10" ss:ExpandedRowCount="32" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="46.2">
+   <Column ss:Hidden="1" ss:AutoFitWidth="0" ss:Width="70.2"/>
+   <Column ss:AutoFitWidth="0" ss:Width="300"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="70.2"/>
+   <Column ss:StyleID="s62" ss:Width="78.599999999999994"/>
+   <Column ss:StyleID="s62" ss:Width="54"/>
+   <Column ss:StyleID="s62" ss:Width="108.6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="70.2" ss:Span="3"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="5" ss:StyleID="s64"><Data ss:Type="String">DK4304 - Sistem Informasi Perencanaan - Kelas: A - Jurusan: S1 Perencanaan Wilayah &amp; Kota - Tahun: 2018 - Sem: 1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s65"><Data ss:Type="String">ID</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="String">NRP - Nama Lengkap</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Ujian Tulis</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Critical Review</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Praktikum</Data></Cell>
+    <Cell ss:StyleID="s66"><Data ss:Type="String">Tugas Besar</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100001</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000001 - FENDRI HIZBULLAH FEBRIANTO</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">83</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">92</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100002</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000002 - MUHAMMAD FEBTIAN SYAH PUTRA</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell><Data ss:Type="Number">90</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">86.7</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100003</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000003 - DHINDA GREFILLIA SYAUQIYYAH IFFAT</Data></Cell>
+    <Cell><Data ss:Type="Number">72</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">84</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100005</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000005 - FATHIMAH ASH SHARFINA</Data></Cell>
+    <Cell><Data ss:Type="Number">78</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">89</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100006</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000006 - MAYANG PUSPITA SALIM</Data></Cell>
+    <Cell><Data ss:Type="Number">78</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">93</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100007</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000007 - SISKA BRILLIANT RAMADHANTY</Data></Cell>
+    <Cell><Data ss:Type="Number">78</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">83</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">85.8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100008</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000008 - ALIFIA DIAN NOVITASARI</Data></Cell>
+    <Cell><Data ss:Type="Number">81</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">88</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">88.9</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100009</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000009 - ALMASSANI` NAILAN SHAFA`</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">92.399999999999991</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100010</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000010 - NURY AHDIYA RIF`ATI</Data></Cell>
+    <Cell><Data ss:Type="Number">78</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">83</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">92</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100011</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000011 - CARISSA DIAN SAKILLA</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">85</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100013</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000013 - REZA ASHARUDIN ZEIN</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">92</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100014</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000014 - FERRY DWI CAHYA</Data></Cell>
+    <Cell><Data ss:Type="Number">72</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">83</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">89</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100015</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000015 - AMIRA LAYYINA</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">90</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">84.7</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100016</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000016 - MARTINA RISKHALILLA</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">83</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">89.5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100018</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000018 - WIWID RIZKI AMALIA</Data></Cell>
+    <Cell><Data ss:Type="Number">72</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">90</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">84</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100019</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000019 - WENDA PURNAMA SARI</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">79.5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100020</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000020 - FITRIA ALIFIA ROSA ASNAWI</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">81</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">88.5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100023</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000023 - RAGA BAGAS PRATAMA</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">75</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">88</Data></Cell>
+    <Cell ss:StyleID="s69"><Data ss:Type="Number">94.5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100024</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000024 - DELLA KUSUMANING PUTRI</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">88</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">93</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100025</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000025 - RIO ARDIANTO</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">86</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">95.5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100026</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000026 - BAYU AZMI ALFAZ</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">93</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100027</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000027 - KHAIRUN NISA ABDILLAH</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">90</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">91.5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100030</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000030 - MUMTAZAH</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">78</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">80</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100031</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000031 - AISSYAH NABILA ANJANI</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">81</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">89</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100032</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000032 - ANGELICA CLARA BR. TARIGAN S.</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">88</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">88</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100033</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000033 - AISHA MAHARANI PUSPITA</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">78</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">81</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">89</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100035</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000035 - EKO RISDIYANTO</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">80</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">86</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100037</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000037 - ALOISIUS AXEL AZARA</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">70</Data></Cell>
+    <Cell><Data ss:Type="Number">88</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">86.300000000000011</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100038</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000038 - QONITA AFNANI FIRDAUS</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">86</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">88</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">3617100039</Data></Cell>
+    <Cell><Data ss:Type="String">08211740000039 - AMRY MUHAMMAD</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">75</Data></Cell>
+    <Cell><Data ss:Type="Number">81</Data></Cell>
+    <Cell ss:StyleID="s67"><Data ss:Type="Number">85</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <HorizontalResolution>300</HorizontalResolution>
+    <VerticalResolution>300</VerticalResolution>
+   </Print>
+   <Zoom>130</Zoom>
+   <Selected/>
+   <LeftColumnVisible>1</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>8</ActiveRow>
+     <ActiveCol>3</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

@@ -4,20 +4,21 @@ import os
 import tempfile
 
 class FileHandler():
-    ALLOWED_EXTENSIONS = {'xml', 'docx'}
     
-    def __init__(self, docx_file, xml_file):
-        self.docx_file = docx_file
-        self.xml_file = xml_file
 
-    def generate_output_table(self, t_fname=None):
+    def is_xml_file_allowed(self, filename):
+        return '.' in filename and filename.rsplit('.',1)[1] == 'xml'
+
+    def is_docx_file_allowed(self, filename):
+        return '.' in filename and filename.rsplit('.',1)[1] == 'docx'
+
+    def generate_output_table(self, docx_file, xml_file, t_fd=None, t_fname=None ):
         try:
-            doc = Document(self.docx_file)
-            xml_data = XMLReader(self.xml_file).getData()
+            doc = Document(docx_file)
+            xml_data = XMLReader(xml_file).getData()
             table_cpl = tableNilaiCPL(doc)
             bobot_cpl = ambilBobotCPl(table_cpl)
             cpmk_cpl = CpmkCpl(table_cpl)
-
             rae_table = doc.tables[-2]
             cpmk = ambilCpmk(rae_table)
             mg_ke = ambilMinggu(rae_table)
@@ -59,11 +60,11 @@ class FileHandler():
                     writeNiliaXBobot(cell[6],data_nilai[i+1],bobot_cpmk[i])
                     writeKetercapaianCpl(cell[7],cell[1],cell[6],bobot_cpl)
                     writeDesc(cell[-1],data_nilai[i+1],cpmk[i],fail_desc[i])
-            if t_fname is not None :
+            if t_fname is not None and t_fd is not None :
+                os.close(t_fd)
                 doc.save(t_fname)
                 return True
             else :
                 return True
         except :
             return False
-            # print(f'Usage : python [doc file] [xml file] [saved file]')
