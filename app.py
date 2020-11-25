@@ -1,5 +1,6 @@
 from flask import render_template, session, Flask, Response, request, flash, url_for, redirect, send_from_directory, after_this_request,send_file
 from flask_session import Session
+from apscheduler.schedulers.background import BackgroundScheduler
 from file_handler import FileHandler
 import tempfile
 import os
@@ -15,6 +16,15 @@ app.config['SESSION_TYPE'] = 'filesystem'
 output_dir = os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])
 Session(app)
 ALLOWED_EXTENSIONS = {'xml', 'docx'}
+
+
+def clean_up():
+    for f in os.scandir(output_dir):
+        os.remove(f.path)
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=clean_up, trigger="interval", minutes=5)
+scheduler.start()
 
 
 def is_file_allowed(filename):

@@ -8,6 +8,7 @@ flask = "*"
 gunicorn = "*"
 python-docx = "*"
 flask-session = "*"
+apscheduler = "*"
 
 [dev-packages]
 
