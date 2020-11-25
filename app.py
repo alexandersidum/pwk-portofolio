@@ -21,7 +21,7 @@ def clean_up():
         os.unlink(f.path)
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=clean_up, trigger="interval", minutes=2)
+scheduler.add_job(func=clean_up, trigger="interval", minutes=60)
 scheduler.start()
 
 
