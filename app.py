@@ -4,13 +4,9 @@ from file_handler import FileHandler
 import tempfile
 import os
 
-
-# BUGG
-# backup di app5
-# Exception handling belum
-# Temp file masih belum terdelete jika tidak didownload !!
-# menggunakan home test
-# Named temp file?
+# Temp file masih belum kedelete kalau user cuma submit dan tidak download
+# Apa perlu fungsi untuk mendelete file dalam output_file manual?
+# Exception handling untuk gagal convert file belum
 
 app = Flask(__name__)
 app.secret_key = '11d06ffa54be4e60b5f51dd1434296b0'
@@ -63,13 +59,16 @@ def download():
         session['is_file_ready'] = False
         return redirect(url_for('index', is_ready=session.get('is_file_ready'), is_file_error=session.get('is_file_error')))
 
+@app.route('/download-cth-docx')
+def download_cth_portofolio():
+   return send_from_directory(os.path.join(app.root_path, 'static'), filename='portfolio_sip.docx', as_attachment=True)
+
+@app.route('/download-cth-xml')
+def download_cth_nilai():
+    return send_from_directory(os.path.join(app.root_path, 'static'), filename='DK4304_A_2018_1_36100.xml', as_attachment=True)
+
 def is_file_ready():
     return session.get('fname') is not None and os.path.isfile(session.get('fname'))
-
-# def clean_up():
-#     for f in os.scandir(output_dir):
-#         os.remove(f.path)
-
 
 if(__name__)=='__main__':
     app.run()

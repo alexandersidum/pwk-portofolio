@@ -17,21 +17,22 @@
     <div class="container min-vw-100">
         <div class="row justify-content-center">
             <div class="col-7 card mr-2 pl-4">
+                <h3 class="font-weight-bold text-uppercase mt-3 mb-5 text-info">Form Portofolio</h3>
                 <div class="pr-5">
                     <form method="POST" enctype=multipart/form-data>
                         <label class="w-100" for="docxFile">Upload file Docx </label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id='docxFile' name="docx_file">
-                            <label class="custom-file-label" for="docxFile">Pilih file</label>
+                            <label class="custom-file-label" for="docxFile">Pilih docx file</label>
                         </div>
-                        <hr>
+                        <hr class="my-4">
                         <label class="w-100" for="docxFile">Upload file XML </label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input " id='xmlFile' name="xml_file">
-                            <label class="custom-file-label" for="xmlFile">Pilih file</label>
+                            <label class="custom-file-label" for="xmlFile">Pilih xml file</label>
                             </div>
-                        <hr>
-                        <div class="form-group mt-4">
+                        <hr class="my-4">
+                        <div class="form-group mt-4 mb-3">
                             <button class="btn btn-primary btn-md w-25" type="submit" >Submit</button>
                         </div>
                     </form>
@@ -53,9 +54,26 @@
                 
             </div>
             <!-- end col -->
-            <div class="col-4 card pt-2 pl-4">
-                <p class="text-uppercase font-weight-bolder text-dark ">Petunjuk</p>
-
+            <div class="col-4 card pt-4 pl-4">
+                <p class="text-uppercase font-weight-bolder text-dark mb-3">Informasi</p>
+                <ul>
+                    <li>
+                        <p>Upload file portofolio sip yang sudah diisi pada bagian Upload docx</p>
+                    </li>
+                    <li>
+                        <p>Upload file nilai yang sudah terisi pada bagian Upload XML</p>
+                    </li>
+                </ul>
+                <hr class="mt-0">
+                <p class="text-uppercase font-weight-bolder text-dark ">Contoh File</p>
+                <ul>
+                    <li>
+                        <a href="{{url_for('download_cth_portofolio')}}">Download contoh Portofolio SIP</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('download_cth_nilai')}}">Download contoh XML nilai</a>
+                    </li>
+                </ul>
             </div>
             <!-- end col -->
 
